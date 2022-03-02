@@ -1,14 +1,10 @@
-/**
- * Config source: https://git.io/JesV9
- *
- * Feel free to let us know via PR, if you find something broken in this config
- * file.
- */
-
 import Env from '@ioc:Adonis/Core/Env'
 import { OrmConfig } from '@ioc:Adonis/Lucid/Orm'
 import Application from '@ioc:Adonis/Core/Application'
 import { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
+
+const URL = require('url-parse')
+const PROD_MYSQL_DB = new URL(Env.get('CLEARDB_DATABASE_URL'))
 
 const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {
   /*
@@ -43,6 +39,18 @@ const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {
       useNullAsDefault: true,
       healthCheck: false,
       debug: false,
+    },
+
+    mysql: {
+      client: 'mysql',
+      connection: {
+        host: Env.get('DB_HOST', PROD_MYSQL_DB.host),
+        port: Env.get('DB_PORT', ''),
+        user: Env.get('DB_USER', PROD_MYSQL_DB.username),
+        password: Env.get('DB_PASSWORD', PROD_MYSQL_DB.password),
+        database: Env.get('DB_DATABASE', PROD_MYSQL_DB.pathname.substr(1)),
+      },
+      debug: Env.get('DB_DEBUG', false),
     },
   },
 

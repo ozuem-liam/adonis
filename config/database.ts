@@ -3,7 +3,7 @@ import { OrmConfig } from '@ioc:Adonis/Lucid/Orm'
 import Application from '@ioc:Adonis/Core/Application'
 import { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
 
-const URL = require('url-parse')
+import URL from 'url-parse'
 const PROD_MYSQL_DB = new URL(Env.get('CLEARDB_DATABASE_URL'))
 
 const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {

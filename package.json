@@ -5,14 +5,13 @@
   "scripts": {
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
-    "start": "node server.js",
+    "start": "node build/server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.4.1",
     "@types/source-map-support": "^0.5.4",
-    "@types/url-parse": "^1.4.8",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
